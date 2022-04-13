@@ -15,6 +15,7 @@ public class LoginUser implements UserDetails {
 
     private final User user;
 
+    // 궁금하면 졸업하고 취업전에 유튜브 시큐리티
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
@@ -30,24 +31,24 @@ public class LoginUser implements UserDetails {
         return user.getUsername();
     }
 
-    // 아래 기술들은 return이 true일때만 정상적으로 로그인이 된다.
     @Override
-    public boolean isAccountNonExpired() { // 계정이 만료되지 않았는가?
+    public boolean isAccountNonExpired() {
         return true;
     }
 
     @Override
-    public boolean isAccountNonLocked() { // 계정이 잠기지 않았는가?
+    public boolean isAccountNonLocked() {
         return true;
     }
 
     @Override
-    public boolean isCredentialsNonExpired() { // 비밀번호 변경한지 오래되지 않았는가?
+    public boolean isCredentialsNonExpired() {
         return true;
     }
 
     @Override
-    public boolean isEnabled() { // 계정이 활성화 되어있는가?
+    public boolean isEnabled() {
         return true;
     }
+
 }

@@ -31,7 +31,7 @@ public class User {
     @Column(length = 20, nullable = false, unique = true)
     private String username;
 
-    // 1234 -> SHA256(해시 알고리즘) -> AKDJ38$&%(@#FFDKJF)165
+    // 1234 -> SHA256(해시 알고리즘) -> AB4539GDUF3AE -> 이렇게 안하면 시큐리티 거부
     @Column(length = 100, nullable = false)
     private String password;
 
@@ -42,4 +42,5 @@ public class User {
     private LocalDateTime createDate;
     @LastModifiedDate // update 할때만 동작
     private LocalDateTime updateDate;
+
 }
