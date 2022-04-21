@@ -26,8 +26,6 @@ public class EmailUtil {
         } catch (MessagingException e) {
             e.printStackTrace();
         }
-
         sender.send(message);
-
     }
 }
