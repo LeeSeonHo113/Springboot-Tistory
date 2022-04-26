@@ -61,6 +61,7 @@ public class PostService {
     public PostRespDto 게시글목록보기(Integer userId, Pageable pageable) {
 
         Page<Post> postsEntity = postRepository.findByUserId(userId, pageable);
+
         List<Category> categorysEntity = categoryRepository.findByUserId(userId);
 
         List<Integer> pageNumbers = new ArrayList<>();

@@ -47,4 +47,4 @@ spring:
       enabled: always
 
 file:
-  path: C:\Users\user\green\upload
+  path: C:\Users\green\upload
