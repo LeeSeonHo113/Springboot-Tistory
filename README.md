@@ -87,3 +87,22 @@ updateDate
 
 Gradle depenency update
 '''txt ./gradlew --refresh-dependencie '''
+
+페이징 참고
+-- currentPage, totalPages
+SELECT TRUE last FROM dual;
+
+SELECT 
+true LAST,
+false FIRST,
+3 size, 
+0 currentPage,
+(SELECT COUNT(*) FROM post WHERE userId = 1) totalCount,
+(SELECT CEIL(COUNT(*)/3) FROM post WHERE userId = 1) totalPages,
+p.*
+FROM post p
+ORDER BY p.id DESC
+LIMIT 0, 3;
+-- LIMIT (0*3), 3;
+
+로그변경 테스트
