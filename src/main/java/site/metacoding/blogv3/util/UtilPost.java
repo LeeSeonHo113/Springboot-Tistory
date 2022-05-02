@@ -5,6 +5,9 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class UtilPost {
 
     // 책임 : img 태그 제거

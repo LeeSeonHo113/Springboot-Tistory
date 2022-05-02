@@ -85,10 +85,10 @@ updateDate
 - 프로필 사진 업로드 (회원가입시)
 - 회원수정
 
-Gradle depenency update
+### Gradle depenency update
 '''txt ./gradlew --refresh-dependencie '''
 
-페이징 참고
+### 페이징 참고
 -- currentPage, totalPages
 SELECT TRUE last FROM dual;
 
@@ -105,4 +105,4 @@ ORDER BY p.id DESC
 LIMIT 0, 3;
 -- LIMIT (0*3), 3;
 
-로그변경 테스트
+### 로그변경 테스트
