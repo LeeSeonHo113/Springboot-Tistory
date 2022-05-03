@@ -73,20 +73,29 @@ updateDate
 ```
 
 ### 7. 기능정리
+- 댓글 (라이브러리 사용)
+- AOP 처리
+- 로그관리 (Log4j)
+- 단위테스트
+- 배포
+- 검색
+- 프로필 사진 변경
+- 글수정
+
 - 카테고리 등록
 - 글쓰기
 - 글목록보기
 - 페이징
 - 글상세보기
-- 검색
+
 - 글삭제
-- 글수정
-- 댓글 (라이브러리 사용)
-- 프로필 사진 업로드 (회원가입시)
+
 - 회원수정
 
 ### Gradle depenency update
-'''txt ./gradlew --refresh-dependencie '''
+'''txt
+./gradlew --refresh-dependencie
+'''
 
 ### 페이징 참고
 -- currentPage, totalPages
