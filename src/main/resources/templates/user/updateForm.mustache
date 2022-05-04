@@ -3,7 +3,7 @@
 <div class="container">
     <div class="my_auth_box">
         <div class="my_auth_form_box">
-            <div class="d-flex jstify-content-center">
+            <div class="d-flex justify-content-center">
                 <img src="https://i1.sndcdn.com/avatars-000373392764-zp0p80-t500x500.jpg"
                     class="my_profile_rounded_img_btn_lg" id="profile-img-btn">
                 <form>
@@ -36,8 +36,10 @@
 
 <script>
     $("#profile-img-btn").click(() => {
-        $("#profile=img-input").click();
+        $("#profile-img-input").click(); // 파일 선택창이 뜬다.
     });
+    $("#profile-img-input").change(() => {
+    }); // 파일을 선택하면!!
 </script>
 
 {{>/layout/footer}}
