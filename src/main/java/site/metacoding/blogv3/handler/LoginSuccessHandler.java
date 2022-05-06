@@ -26,5 +26,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         HttpSession session = request.getSession();
         session.setAttribute("principal", principal);
         response.sendRedirect("/user/" + principal.getId() + "/post");
+
     }
+
 }
