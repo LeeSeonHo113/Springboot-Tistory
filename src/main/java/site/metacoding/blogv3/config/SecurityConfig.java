@@ -34,5 +34,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // .failureHandler(null)
                 // .defaultSuccessUrl("/")
                 .successHandler(new LoginSuccessHandler());
+
     }
 }
