@@ -27,6 +27,8 @@ import site.metacoding.blogv3.domain.visit.VisitRepository;
 import site.metacoding.blogv3.handler.ex.CustomApiException;
 import site.metacoding.blogv3.handler.ex.CustomException;
 import site.metacoding.blogv3.util.UtilFileUpload;
+import site.metacoding.blogv3.web.dto.love.LoveRespDto;
+import site.metacoding.blogv3.web.dto.love.LoveRespDto.PostDto;
 import site.metacoding.blogv3.web.dto.post.PostDetailRespDto;
 import site.metacoding.blogv3.web.dto.post.PostRespDto;
 import site.metacoding.blogv3.web.dto.post.PostWriteReqDto;
@@ -48,7 +50,7 @@ public class PostService {
     private final EntityManager em; // IoC 컨테이너에서 가져옴.
 
     @Transactional
-    public Love 좋아요(Integer postId, User principal) {
+    public LoveRespDto 좋아요(Integer postId, User principal) {
 
         // 숙제 Love를 Dto에 옮겨서 비영속화된 데이터를 응답하기
         Post postEntity = postFindById(postId);
@@ -56,7 +58,18 @@ public class PostService {
         Love love = new Love();
         love.setUser(principal);
         love.setPost(postEntity);
-        return loveRepository.save(love);
+
+        Love loveEntity = loveRepository.save(love);
+        // 1. DTO 클래스 생성
+        // 2. 모델메퍼 함수 호출!! 내가 만든 DTO = 모델메퍼메서드호출(loveEntity, 내가만든DTO.class)
+        LoveRespDto loveRespDto = new LoveRespDto();
+        loveRespDto.setLoveId(loveEntity.getId());
+        PostDto postDto = loveRespDto.new PostDto();
+        postDto.setPostId(postEntity.getId());
+        postDto.setTitle(postEntity.getTitle());
+        loveRespDto.setPost(postDto);
+
+        return loveRespDto;
     }
 
     @Transactional
@@ -83,6 +96,7 @@ public class PostService {
 
     }
 
+    // 비로그인 상태일 때 상세보기
     @Transactional
     public PostDetailRespDto 게시글상세보기(Integer id) {
         PostDetailRespDto postDetailRespDto = new PostDetailRespDto();
@@ -99,10 +113,12 @@ public class PostService {
 
         // 좋아요 유무 추가하기 (로그인한 사람이 해당 게시글을 좋아하는지)
         postDetailRespDto.setLove(false);
+        postDetailRespDto.setLoveId(0);
 
         return postDetailRespDto;
     }
 
+    // 로그인 상태일 때 상세보기
     @Transactional
     public PostDetailRespDto 게시글상세보기(Integer id, User principal) {
 
@@ -125,6 +141,8 @@ public class PostService {
         // (1) 로그인한 사람의 userId와 상세보기한 postId로 Love 테이블에서 select해서 row가 있으면 true
         Optional<Love> loveOp = loveRepository.mFindByUserIdAndPostId(principal.getId(), id);
         if (loveOp.isPresent()) {
+            Love loveEntity = loveOp.get();
+            postDetailRespDto.setLoveId(loveEntity.getId());
             postDetailRespDto.setLove(true);
         } else {
             postDetailRespDto.setLove(false);
